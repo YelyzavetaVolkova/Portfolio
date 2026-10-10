@@ -32,10 +32,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 /* the name (~8.3em) stays on one line, so the size is capped by the available width */
 h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),calc((100vw - 2*var(--gut) - var(--indent))/8.6));
  line-height:.94;letter-spacing:-.035em;margin-left:-.05em;align-self:flex-start}
-.cols{display:grid;grid-template-columns:minmax(0,32ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
+.cols{display:grid;grid-template-columns:minmax(0,36ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
  margin-top:clamp(24px,4.4vh,48px);align-items:start;justify-content:start}
-.intro .keep{white-space:nowrap}
-.intro{text-wrap:pretty;font-size:clamp(15px,1.2vw,18px);line-height:1.45}
+/* "stop for, for projects that make a difference." stays one line; on the narrowest phones only "stop" may wrap */
+.intro .keep,.intro .keep-wide{white-space:nowrap}
+@media (max-width:380px){.intro .keep-wide{white-space:normal}}
+.intro{text-wrap:pretty;text-wrap:balance;font-size:clamp(15px,1.2vw,18px);line-height:1.45}
 
 /* ---------- project index ---------- */
 .work .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
@@ -122,7 +124,7 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
  <div id="pile" aria-hidden="true"></div>
  <h1>Hi! I’m<br>Yelyzaveta&nbsp;Volkova</h1>
  <div class="cols">
-  <p class="intro">A graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I&nbsp;enjoy designing things people stop <span class="keep">for, for projects that make a difference.</span></p>
+  <p class="intro">A graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I&nbsp;enjoy designing things people <span class="keep-wide">stop <span class="keep">for, for projects that make a difference.</span></span></p>
   <nav class="work" aria-label="Selected work">
    <span class="lbl">Selected work</span>
    <ol>
