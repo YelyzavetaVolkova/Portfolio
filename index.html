@@ -187,7 +187,7 @@ const KINDS=[...WORK.map(p=>({p,src:`assets/objects/${p.id}.webp`,ar:p.ar,size:p
 const BIG=1.7;   // objects are drawn large and may hang over the edges of the screen
 
 /* ---------- falling objects ---------- */
-const RAIN_DELAY=6000;    // ms of visible time before things start to fall
+const RAIN_DELAY=800;     // ms of visible time before things start to fall (counted once fonts and images are ready)
 const {Engine,Bodies,Body,Composite,Constraint,Query,Sleeping,Vertices}=Matter;
 const pile=document.getElementById('pile'),hero=document.getElementById('hero'),play=document.getElementById('play');
 const tip=document.getElementById('tip'),clearBtn=document.getElementById('clear'),ctl=document.querySelector('.ctl');
@@ -271,7 +271,7 @@ function rain(){
   if(i>=order.length){clearInterval(spawnTimer);return}
   const [k,sc,slot]=order[i++],h=k.size*unit()*sc;
   makeItem(k,slot*W+(Math.random()-.5)*W*.06,-h*.6-Math.random()*80,sc);
- },narrow.matches?260:220);
+ },narrow.matches?170:130);
 }
 function clearTable(){
  clearInterval(spawnTimer);state='clearing';buildWalls();
@@ -309,7 +309,7 @@ else if(narrow.matches){
  const arm=()=>{if(state!=='idle'||document.hidden||t)return;startedAt=performance.now();t=setTimeout(()=>ready.then(rain),left)};
  const disarm=()=>{if(!t)return;clearTimeout(t);t=null;left=Math.max(0,left-(performance.now()-startedAt))};
  document.addEventListener('visibilitychange',()=>document.hidden?disarm():arm());
- arm();
+ ready.then(arm);
 }
 
 /* ---------- hover, drag, click ---------- */
