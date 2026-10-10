@@ -26,12 +26,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;
  padding:clamp(72px,11vh,120px) var(--gut) clamp(80px,11vh,120px) calc(var(--gut) + var(--indent))}
 .hero>*:not(#pile){position:relative;z-index:2}
+/* the text grid spans the full width; let clicks through its empty parts to the objects behind */
+.cols,.hero>h1{pointer-events:none}
+.intro,.work{pointer-events:auto}
 /* the name (~8.3em) stays on one line, so the size is capped by the available width */
 h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),calc((100vw - 2*var(--gut) - var(--indent))/8.6));
  line-height:.94;letter-spacing:-.035em;margin-left:-.05em;align-self:flex-start}
 .cols{display:grid;grid-template-columns:minmax(0,30ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
  margin-top:clamp(24px,4.4vh,48px);align-items:start;justify-content:start}
-.intro{font-size:clamp(15px,1.2vw,18px);line-height:1.45}
+.intro{text-wrap:pretty;font-size:clamp(15px,1.2vw,18px);line-height:1.45}
 
 /* ---------- project index ---------- */
 .work .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
@@ -118,7 +121,7 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
  <div id="pile" aria-hidden="true"></div>
  <h1>Hi! I’m<br>Yelyzaveta&nbsp;Volkova</h1>
  <div class="cols">
-  <p class="intro">A graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I enjoy designing things people stop for, for projects that make a difference.</p>
+  <p class="intro">A graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I&nbsp;enjoy designing things people stop for, for projects that make&nbsp;a&nbsp;difference.</p>
   <nav class="work" aria-label="Selected work">
    <span class="lbl">Selected work</span>
    <ol>
@@ -179,7 +182,7 @@ const KINDS=[...WORK.map(p=>({p,src:`assets/objects/${p.id}.webp`,ar:p.ar,size:p
 const BIG=1.7;   // objects are drawn large and may hang over the edges of the screen
 
 /* ---------- falling objects ---------- */
-const RAIN_DELAY=10000;   // ms of visible time before things start to fall
+const RAIN_DELAY=6000;    // ms of visible time before things start to fall
 const {Engine,Bodies,Body,Composite,Constraint,Query,Sleeping,Vertices}=Matter;
 const pile=document.getElementById('pile'),hero=document.getElementById('hero'),play=document.getElementById('play');
 const tip=document.getElementById('tip'),clearBtn=document.getElementById('clear'),ctl=document.querySelector('.ctl');
