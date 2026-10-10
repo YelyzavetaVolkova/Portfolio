@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Yelyzaveta Volkova — Graphic design portfolio</title>
-<meta name="description" content="Lisa (Yelyzaveta) Volkova — graphic designer working between culture and marketing: identities, packaging and ad creatives.">
+<title>Yelyzaveta Volkova · Portfolio</title>
+<meta name="description" content="Lisa (Yelyzaveta) Volkova, graphic designer. Portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700&family=Stack+Sans+Headline:wght@400..700&display=swap" rel="stylesheet">
@@ -18,61 +18,54 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;
- min-height:100vh;min-height:100svh;overflow-x:hidden}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 
-/* Text sits on white "labels" so it stays readable when objects pile up behind it */
-.hl{background:var(--bg);-webkit-box-decoration-break:clone;box-decoration-break:clone;pointer-events:auto;
- padding:.16em 0;box-shadow:.3em 0 0 var(--bg),-.3em 0 0 var(--bg)}
-
-/* ---------- top bar ---------- */
-.bar{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;justify-content:space-between;align-items:baseline;
- padding:calc(var(--gut) + 6px) var(--gut) 0;font-size:clamp(16px,1.45vw,21px);letter-spacing:.005em;pointer-events:none}
-
 /* ---------- hero ---------- */
-.hero{position:relative;z-index:2;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
- padding:clamp(110px,14vh,150px) var(--gut) clamp(70px,10vh,110px) calc(var(--gut) + var(--indent));pointer-events:none}
-.eyebrow{font-size:clamp(18px,1.9vw,28px);margin-bottom:clamp(6px,1vw,14px)}
-h1{font-family:var(--head);font-weight:700;font-size:clamp(54px,10.2vw,172px);line-height:.94;letter-spacing:-.035em;
- margin-left:-.05em;max-width:12ch}
-.cols{display:grid;grid-template-columns:minmax(0,34ch) minmax(0,520px);gap:clamp(28px,6vw,110px);
- margin-top:clamp(28px,5.2vh,60px);align-items:start}
-.intro{font-size:clamp(17px,1.5vw,22px);line-height:1.42}
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+ padding:clamp(72px,11vh,120px) var(--gut) clamp(80px,11vh,120px) calc(var(--gut) + var(--indent))}
+.hero>*:not(#pile){position:relative;z-index:2}
+/* the name (~8.3em) stays on one line, so the size is capped by the available width */
+h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),calc((100vw - 2*var(--gut) - var(--indent))/8.6));
+ line-height:.94;letter-spacing:-.035em;margin-left:-.05em;align-self:flex-start}
+.cols{display:grid;grid-template-columns:minmax(0,30ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
+ margin-top:clamp(24px,4.4vh,48px);align-items:start;justify-content:start}
+.intro{font-size:clamp(15px,1.2vw,18px);line-height:1.45}
 
 /* ---------- project index ---------- */
-.work{pointer-events:auto}
-.work .lbl{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:inline-block}
+.work .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
 .work ol{list-style:none}
 .row{display:grid;grid-template-columns:2.6em 1fr auto;gap:0 14px;align-items:baseline;width:100%;
- padding:13px 0 12px;border-top:1px solid var(--hair);background:var(--bg);transition:padding .35s cubic-bezier(.2,.7,.2,1)}
+ padding:11px 0 10px;border-top:1px solid var(--hair);transition:padding .35s cubic-bezier(.2,.7,.2,1)}
 .work li:last-child .row{border-bottom:1px solid var(--hair)}
-.row .no{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
-.row .nm{font-family:var(--head);font-weight:600;font-size:clamp(19px,1.6vw,24px);letter-spacing:-.01em}
-.row .ds{font-size:clamp(13px,1vw,15px);color:var(--muted);text-align:right}
+.row .no{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.row .nm{font-family:var(--head);font-weight:600;font-size:clamp(16px,1.25vw,19px);letter-spacing:-.01em}
+.row .ds{font-size:clamp(12px,.9vw,14px);color:var(--muted);text-align:right}
 .row .ar{display:inline-block;width:0;overflow:hidden;opacity:0;transition:width .35s,opacity .3s;vertical-align:bottom}
 .row:hover,.row.hot{padding-left:10px}
 .row:hover .ar,.row.hot .ar{width:1.2em;opacity:1}
 
 /* ---------- falling objects ---------- */
-#pile{position:fixed;inset:0;z-index:1;overflow:hidden;user-select:none;-webkit-user-select:none;pointer-events:none}
+/* #pile lives in the hero on wide screens (objects fall around the text) and in #play on narrow ones */
+#pile{position:absolute;inset:0;z-index:1;overflow:hidden;user-select:none;-webkit-user-select:none;pointer-events:none}
 body.raining #pile{pointer-events:auto}
 #pile.grab{cursor:grab}#pile.grabbing{cursor:grabbing}
 .it{position:absolute;left:0;top:0;will-change:transform;transition:opacity .35s}
 .it img{display:block;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none;
  filter:drop-shadow(0 10px 14px rgba(0,0,0,.16))}
 #pile.focus .it:not(.on){opacity:.12}
+#play{display:none;position:relative;height:72vh;height:72svh;border-top:1px solid var(--hair);overflow:hidden}
 
 #tip{position:fixed;left:0;top:0;z-index:6;pointer-events:none;background:var(--ink);color:var(--bg);font-size:13px;
  padding:7px 11px 6px;border-radius:100px;white-space:nowrap;opacity:0;transition:opacity .15s}
 #tip.show{opacity:1}
 #tip b{font-family:var(--head);font-weight:600;margin:0 .35em}
 
-.ctl{position:fixed;right:var(--gut);bottom:var(--gut);z-index:4;display:flex;gap:10px;align-items:center;
+.ctl{position:absolute!important;right:var(--gut);bottom:var(--gut);display:flex;gap:14px;align-items:center;
  opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;pointer-events:none}
 body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
-.ctl .hint{font-size:12px;color:var(--muted);background:var(--bg);padding:4px 6px}
+.ctl .hint{font-size:12px;color:var(--muted)}
 .pill{font-size:13px;border:1px solid var(--ink);background:var(--bg);border-radius:100px;padding:9px 16px 8px;transition:background .2s,color .2s}
 .pill:hover{background:var(--ink);color:var(--bg)}
 
@@ -85,26 +78,31 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
 .cin{max-width:1180px;margin:0 auto;padding:clamp(30px,6vh,70px) var(--gut) 110px}
 .chead{margin-bottom:clamp(36px,6vh,64px)}
 .chead .no{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
-.chead h2{font-family:var(--head);font-weight:700;font-size:clamp(46px,8vw,128px);line-height:.95;letter-spacing:-.035em;margin:10px 0 14px -.04em}
-.chead .d{font-size:clamp(17px,1.5vw,22px)}
+.chead h2{font-family:var(--head);font-weight:700;font-size:clamp(38px,6vw,96px);line-height:.95;letter-spacing:-.035em;margin:10px 0 14px -.04em}
+.chead .d{font-size:clamp(15px,1.2vw,18px)}
 .deck{display:flex;flex-direction:column;gap:clamp(14px,2vw,26px)}
 .deck img{display:block;width:100%;height:auto;background:#f4f4f4}
 .cnext{margin-top:clamp(50px,8vh,90px);border-top:1px solid var(--hair);padding-top:22px;width:100%;display:flex;
  justify-content:space-between;align-items:baseline;gap:16px}
 .cnext span{font-size:13px;color:var(--muted)}
-.cnext b{font-family:var(--head);font-weight:700;font-size:clamp(30px,4.5vw,64px);letter-spacing:-.03em;transition:transform .35s}
+.cnext b{font-family:var(--head);font-weight:700;font-size:clamp(26px,3.4vw,48px);letter-spacing:-.03em;transition:transform .35s}
 .cnext:hover b{transform:translateX(-10px)}
 
 @media (max-width:900px){
  :root{--indent:0px}
  .cols{grid-template-columns:1fr;gap:44px}
  .intro{max-width:34ch}
- .row .ds{font-size:13px}
+ .row .ds{font-size:12px}
+}
+@media (max-width:700px){
+ .hero{min-height:0;padding-bottom:56px}
+ #play{display:block}
+ .ctl{top:var(--gut);bottom:auto}
+ .ctl .hint{display:none}
 }
 @media (max-width:520px){
  .row{grid-template-columns:2.2em 1fr}
  .row .ds{grid-column:2;text-align:left;margin-top:3px}
- .ctl .hint{display:none}
 }
 @media (hover:none),(pointer:coarse){
  body.raining #pile{pointer-events:none}
@@ -115,17 +113,13 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
 </head>
 <body>
 
-<div id="pile" aria-hidden="true"></div>
-
-<header class="bar"><span class="hl">Yelyzaveta Volkova</span><span class="hl">2026</span></header>
-
-<main class="hero">
- <p class="eyebrow"><span class="hl">Graphic design</span></p>
- <h1>Hi! My name<br> is Lisa!</h1>
+<main class="hero" id="hero">
+ <div id="pile" aria-hidden="true"></div>
+ <h1>Hi! I’m<br>Yelyzaveta&nbsp;Volkova</h1>
  <div class="cols">
-  <p class="intro"><span class="hl">I’m a graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels — and ad creatives that have to perform. I enjoy designing things people stop for, for projects that make a difference.</span></p>
+  <p class="intro">I’m a graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I enjoy designing things people stop for, for projects that make a difference.</p>
   <nav class="work" aria-label="Selected work">
-   <span class="lbl hl">Selected work</span>
+   <span class="lbl">Selected work</span>
    <ol>
     <li><button class="row" data-id="kino"><span class="no">01</span><span class="nm">Kino Tagen<span class="ar"> →</span></span><span class="ds">Identity for a film festival</span></button></li>
     <li><button class="row" data-id="chimera"><span class="no">02</span><span class="nm">Chimèra<span class="ar"> →</span></span><span class="ds">Packaging design</span></button></li>
@@ -135,9 +129,9 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
    </ol>
   </nav>
  </div>
+ <div class="ctl"><span class="hint">Drag things around · click one to open it</span><button class="pill" id="clear">Clear the table</button></div>
 </main>
-
-<div class="ctl"><span class="hint">Drag things around · click one to open it</span><button class="pill" id="clear">Clear the table</button></div>
+<section id="play" aria-hidden="true"></section>
 <div id="tip"></div>
 
 <section id="case" aria-hidden="true">
@@ -155,9 +149,9 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
 // size: object height as a share of sqrt(viewport area); fill: how much of its box the object covers.
 // shape: collider parts in image-relative units (0..1): ['r',x0,y0,x1,y1] rectangle, ['c',cx,cy,r] circle (r in widths)
 const WORK=[
- {id:'kino',no:'01',name:'Kino Tagen',desc:'Identity for a film festival',ar:453/1200,size:.25,fill:.6,
+ {id:'kino',no:'01',name:'Kino Tagen',desc:'Identity for a film festival',ar:453/931,size:.194,fill:.7,
   deck:Array.from({length:13},(_,i)=>[`kino-${String(i+1).padStart(2,'0')}`,1250,804]),
-  shape:[['r',.44,.0,.70,.40],['r',.03,.395,.98,.99]]},
+  shape:[['r',.45,0,.68,.225],['r',.03,.22,.98,.987]]},
  {id:'chimera',no:'02',name:'Chimèra',desc:'Packaging design',ar:315/1200,size:.27,fill:.8,
   deck:[['chimera-01',1250,6072]],
   shape:[['r',.31,.015,.69,.37],['r',.02,.35,.985,.99]]},
@@ -172,33 +166,68 @@ const WORK=[
   shape:[['r',.02,0,.99,1]]},
 ];
 const byId=Object.fromEntries(WORK.map(p=>[p.id,p]));
+// what falls: one of each, each tied to its project. MORE are extra objects from the project mockups.
+const MORE=[
+ {id:'alta',f:'alta-bag-red',ar:.619,size:.19,shape:[['p',[[.012,.951],[.012,.286],[.062,.028],[.116,.02],[.851,.008],[.917,.018],[.983,.253],[.983,.962],[.893,.99],[.219,.967]]]]},
+ {id:'oxis',f:'oxis-sleeve-blue',ar:1.036,size:.17,shape:[['r',0,0,1,1]]},
+ {id:'oxis',f:'oxis-badge',ar:372/632,size:.3,shape:[['r',0.027,0.324,0.599,0.88],['p',[[0.599,0.068],[0.742,0.068],[0.371,0.313],[0.304,0.315],[0.282,0.301],[0.285,0.278],[0.433,0.161],[0.513,0.109]]],['p',[[0.688,0.913],[0.602,0.066],[0.726,0.013],[0.852,0.081],[0.879,0.191],[0.96,0.886],[0.89,0.965],[0.774,0.97]]]]},
+];
+const KINDS=[...WORK.map(p=>({p,src:`assets/objects/${p.id}.webp`,ar:p.ar,size:p.size,shape:p.shape})),
+ ...MORE.map(e=>({p:byId[e.id],src:`assets/objects/${e.f}.webp`,ar:e.ar,size:e.size,shape:e.shape}))];
+const BIG=1.7;   // objects are drawn large and may hang over the edges of the screen
 
 /* ---------- falling objects ---------- */
 const RAIN_DELAY=10000;   // ms of visible time before things start to fall
-const {Engine,Bodies,Body,Composite,Constraint,Query,Sleeping}=Matter;
-const pile=document.getElementById('pile'),tip=document.getElementById('tip'),clearBtn=document.getElementById('clear');
+const {Engine,Bodies,Body,Composite,Constraint,Query,Sleeping,Vertices}=Matter;
+const pile=document.getElementById('pile'),hero=document.getElementById('hero'),play=document.getElementById('play');
+const tip=document.getElementById('tip'),clearBtn=document.getElementById('clear'),ctl=document.querySelector('.ctl');
 const rows=[...document.querySelectorAll('.row')];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const touch=matchMedia('(hover: none), (pointer: coarse)').matches;
+const narrow=matchMedia('(max-width: 700px)');
 const engine=Engine.create({enableSleeping:true});engine.gravity.y=1.1;
 const world=engine.world;
 const T=600;
-let W=innerWidth,H=innerHeight,items=[],walls=[],paused=false,state='idle',focusId=null;
-const unit=()=>Math.sqrt(W*H)*(W<600?1.05:1);
+let W=0,H=0,items=[],walls=[],obstacles=[],paused=false,state='idle',focusId=null;
+const unit=()=>Math.sqrt(innerWidth*innerHeight)*(narrow.matches?.9:.72);
 
-function buildWalls(){
- Composite.remove(world,walls);
- const o={isStatic:true,friction:.6,restitution:.1};
- walls=[Bodies.rectangle(-T/2,H-9000,T,20000,o),Bodies.rectangle(W+T/2,H-9000,T,20000,o)];
- if(state!=='clearing')walls.push(Bodies.rectangle(W/2,H+T/2,W+2*T,T,o));   // floor
- Composite.add(world,walls);
+// On wide screens the objects fall inside the hero and bounce off the text; on narrow ones they fill #play below it
+function mount(){
+ const box=narrow.matches?play:hero;
+ if(pile.parentNode!==box){box.prepend(pile);box.appendChild(ctl)}
+ W=box.clientWidth;H=box.clientHeight;
 }
-buildWalls();
+function rel(r){const b=pile.getBoundingClientRect();return{x:r.left-b.left,y:r.top-b.top,w:r.width,h:r.height}}
+function textRects(){
+ if(narrow.matches)return[];
+ const out=[];
+ const lines=el=>{const rg=document.createRange();rg.selectNodeContents(el);
+  // one rect per line, trimmed to the ink so objects can sit right on the letters
+  const cut=el.tagName==='H1'?[.2,.1]:[.12,.08];
+  [...rg.getClientRects()].filter(r=>r.width>4).forEach(r=>{const q=rel(r);q.y+=q.h*cut[0];q.h*=1-cut[0]-cut[1];out.push(q)})};
+ lines(document.querySelector('h1'));lines(document.querySelector('.intro'));
+ out.push(rel(document.querySelector('.work').getBoundingClientRect()));
+ if(document.body.classList.contains('ready'))out.push(rel(ctl.getBoundingClientRect()));
+ return out;
+}
+const edge=()=>unit()*(narrow.matches?.07:.09);
+function buildWalls(){
+ Composite.remove(world,walls);Composite.remove(world,obstacles);obstacles=[];
+ const o={isStatic:true,friction:.6,restitution:.1},m=edge();
+ // sides and floor sit outside the visible frame, so objects resting there are cut by the edge
+ walls=[Bodies.rectangle(-m-T/2,H-9000,T,20000,o),Bodies.rectangle(W+m+T/2,H-9000,T,20000,o)];
+ if(state!=='clearing'){
+  walls.push(Bodies.rectangle(W/2,H+m+T/2,W+2*T,T,o));   // floor
+  obstacles=textRects().map(r=>Bodies.rectangle(r.x+r.w/2,r.y+r.h/2,r.w,Math.max(r.h,8),{...o,chamfer:{radius:Math.min(6,r.h/3)}}));
+ }
+ Composite.add(world,walls);Composite.add(world,obstacles);
+}
 
-function makeItem(p,x,y,scale){
- const h=p.size*unit()*scale,w=h*p.ar,x0=x-w/2,y0=y-h/2;
- const parts=p.shape.map(s=>s[0]==='c'
-  ?Bodies.circle(x0+s[1]*w,y0+s[2]*h,s[3]*w)
+function makeItem(k,x,y,scale){
+ const p=k.p,h=k.size*unit()*scale,w=h*k.ar,x0=x-w/2,y0=y-h/2;
+ const poly=vs=>{const c=Vertices.centre(vs);return Bodies.fromVertices(c.x,c.y,[vs])};
+ const parts=k.shape.map(s=>s[0]==='c'?Bodies.circle(x0+s[1]*w,y0+s[2]*h,s[3]*w)
+  :s[0]==='p'?poly(s[1].map(([u,v])=>({x:x0+u*w,y:y0+v*h})))
   :Bodies.rectangle(x0+(s[1]+s[3])/2*w,y0+(s[2]+s[4])/2*h,(s[3]-s[1])*w,(s[4]-s[2])*h,{chamfer:{radius:Math.min(w,h)*.04}}));
  const body=parts.length>1?Body.create({parts}):parts[0];
  Object.assign(body,{friction:.55,frictionStatic:.8,restitution:.12,frictionAir:.012});
@@ -208,7 +237,7 @@ function makeItem(p,x,y,scale){
  Body.setVelocity(body,{x:(Math.random()-.5)*2,y:2+Math.random()*3});
  const el=document.createElement('div');el.className='it';el.style.width=w+'px';el.style.height=h+'px';
  el.style.marginLeft=-w/2+'px';el.style.marginTop=-h/2+'px';
- const im=new Image();im.src=`assets/objects/${p.id}.webp`;im.alt='';im.draggable=false;el.appendChild(im);
+ const im=new Image();im.src=k.src;im.alt='';im.draggable=false;el.appendChild(im);
  if(focusId)el.classList.toggle('on',p.id===focusId);
  pile.appendChild(el);Composite.add(world,body);
  const it={p,body,el,off};body.item=it;items.push(it);place(it);
@@ -222,21 +251,17 @@ let spawnTimer=null;
 function rain(){
  if(state==='raining')return;
  state='raining';document.body.classList.add('raining','ready');clearBtn.textContent='Clear the table';
- buildWalls();
- // copies until they cover about half the screen (a third on phones, so reading isn't crowded)
- const target=W*H*(W<600?.34:.5),order=[],deck=[];let area=0;
- while(area<target&&order.length<90){
-  if(!deck.length)deck.push(...WORK.slice().sort(()=>Math.random()-.5));
-  const p=deck.pop(),sc=.82+Math.random()*.3,h=p.size*unit()*sc;
-  order.push([p,sc]);area+=h*h*p.ar*p.fill;
- }
+ mount();buildWalls();
+ // one of each, dropped across the whole width (edges included) in random order
+ const n=KINDS.length,slots=Array.from({length:n},(_,j)=>.03+.94*j/(n-1)).sort(()=>Math.random()-.5);
+ const order=KINDS.slice().sort(()=>Math.random()-.5).map((k,j)=>[k,BIG*(.94+Math.random()*.12),slots[j]]);
  let i=0;clearInterval(spawnTimer);
  spawnTimer=setInterval(()=>{
   if(paused)return;
   if(i>=order.length){clearInterval(spawnTimer);return}
-  const [p,sc]=order[i++],h=p.size*unit()*sc,w=h*p.ar;
-  makeItem(p,w/2+10+Math.random()*Math.max(1,W-w-20),-h*.75-Math.random()*120,sc);
- },W<600?150:95);
+  const [k,sc,slot]=order[i++],h=k.size*unit()*sc;
+  makeItem(k,slot*W+(Math.random()-.5)*W*.06,-h*.6-Math.random()*80,sc);
+ },narrow.matches?260:220);
 }
 function clearTable(){
  clearInterval(spawnTimer);state='clearing';buildWalls();
@@ -261,12 +286,17 @@ function frame(now){
 requestAnimationFrame(frame);
 function setPaused(v){paused=v;last=performance.now()}
 
-/* start after RAIN_DELAY of visible time; images are decoded first so nothing falls in empty */
-const decoded=Promise.all(WORK.map(p=>{const im=new Image();im.src=`assets/objects/${p.id}.webp`;return im.decode().catch(()=>{})}));
+/* start after RAIN_DELAY of visible time (on phones: once the box below is scrolled into view);
+   fonts and images load first so the text shapes are final and nothing falls in empty */
+mount();
+const ready=Promise.all([document.fonts.ready,...KINDS.map(k=>{const im=new Image();im.src=k.src;return im.decode().catch(()=>{})})]);
 if(reduced){document.body.classList.add('ready');clearBtn.textContent='Drop the objects'}
-else{
+else if(narrow.matches){
+ const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();ready.then(rain)}},{threshold:.35});
+ io.observe(play);
+}else{
  let left=RAIN_DELAY,startedAt=0,t=null;
- const arm=()=>{if(state!=='idle'||document.hidden||t)return;startedAt=performance.now();t=setTimeout(()=>decoded.then(rain),left)};
+ const arm=()=>{if(state!=='idle'||document.hidden||t)return;startedAt=performance.now();t=setTimeout(()=>ready.then(rain),left)};
  const disarm=()=>{if(!t)return;clearTimeout(t);t=null;left=Math.max(0,left-(performance.now()-startedAt))};
  document.addEventListener('visibilitychange',()=>document.hidden?disarm():arm());
  arm();
@@ -274,6 +304,7 @@ else{
 
 /* ---------- hover, drag, click ---------- */
 function focusProject(id){
+ if(id&&!items.some(it=>it.p.id===id))id=null;   // nothing of this project on screen: don't dim the rest
  focusId=id;pile.classList.toggle('focus',!!id);
  items.forEach(it=>it.el.classList.toggle('on',it.p.id===id));
 }
@@ -286,18 +317,20 @@ function bodyAt(x,y){
 let drag=null,hotRow=null;
 function setHot(id){if(hotRow)hotRow.classList.remove('hot');hotRow=id?rows.find(r=>r.dataset.id===id):null;if(hotRow)hotRow.classList.add('hot')}
 if(!touch){
+ const pt=e=>{const b=pile.getBoundingClientRect();return{x:e.clientX-b.left,y:e.clientY-b.top}};
  pile.addEventListener('pointermove',e=>{
-  const x=e.clientX,y=e.clientY;
+  const {x,y}=pt(e);
   if(drag){drag.c.pointA={x,y};return}
   const b=bodyAt(x,y);
   pile.classList.toggle('grab',!!b);
-  if(b){const p=b.item.p;tip.innerHTML=`${p.no}<b>${p.name}</b>${p.desc.toLowerCase()}`;
-   tip.style.transform=`translate(${Math.min(x+16,W-tip.offsetWidth-8)}px,${y+52>H?y-tip.offsetHeight-12:y+18}px)`;tip.classList.add('show');setHot(p.id)}
+  if(b){const p=b.item.p,cx=e.clientX,cy=e.clientY;tip.innerHTML=`${p.no}<b>${p.name}</b>${p.desc.toLowerCase()}`;
+   tip.style.transform=`translate(${Math.min(cx+16,innerWidth-tip.offsetWidth-8)}px,${cy+52>innerHeight?cy-tip.offsetHeight-12:cy+18}px)`;
+   tip.classList.add('show');setHot(p.id)}
   else{tip.classList.remove('show');setHot(null)}
  });
  pile.addEventListener('pointerleave',()=>{if(!drag){tip.classList.remove('show');setHot(null);pile.classList.remove('grab')}});
  pile.addEventListener('pointerdown',e=>{
-  const x=e.clientX,y=e.clientY,b=bodyAt(x,y);if(!b)return;
+  const {x,y}=pt(e),b=bodyAt(x,y);if(!b)return;
   e.preventDefault();pile.setPointerCapture(e.pointerId);
   Sleeping.set(b,false);
   const c=Constraint.create({pointA:{x,y},bodyB:b,pointB:{x:x-b.position.x,y:y-b.position.y},stiffness:.18,damping:.1,length:0});
@@ -308,7 +341,7 @@ if(!touch){
  const drop=e=>{
   if(!drag)return;
   Composite.remove(world,drag.c);pile.classList.remove('grabbing');
-  const click=Math.hypot(e.clientX-drag.x,e.clientY-drag.y)<6&&performance.now()-drag.t<400,id=drag.b.item.p.id;
+  const {x,y}=pt(e),click=Math.hypot(x-drag.x,y-drag.y)<6&&performance.now()-drag.t<400,id=drag.b.item.p.id;
   drag=null;
   if(click&&e.type==='pointerup')openCase(id);
  };
@@ -316,12 +349,16 @@ if(!touch){
 }
 
 /* ---------- resize ---------- */
-let rt=null;
+let rt=null,lastNarrow=narrow.matches;
 addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{
- W=innerWidth;H=innerHeight;buildWalls();
- items.forEach(it=>{const b=it.body,x=Math.min(Math.max(b.position.x,40),W-40),y=Math.min(b.position.y,H-40);
-  if(x!==b.position.x||(state!=='clearing'&&y!==b.position.y)){Body.setPosition(b,{x,y:state==='clearing'?b.position.y:y});Sleeping.set(b,false)}});
-},120)});
+ if(narrow.matches!==lastNarrow){   // switching layout: start over in the new place
+  lastNarrow=narrow.matches;items.forEach(it=>{Composite.remove(world,it.body);it.el.remove()});items=[];
+  mount();buildWalls();if(state==='raining'){state='idle';rain()}return;
+ }
+ mount();buildWalls();
+ items.forEach(it=>{const b=it.body,x=Math.min(Math.max(b.position.x,40),W-40);
+  if(x!==b.position.x){Body.setPosition(b,{x,y:b.position.y})}Sleeping.set(b,false)});
+},150)});
 
 /* ---------- case view ---------- */
 const caseEl=document.getElementById('case');
@@ -334,7 +371,7 @@ function render(id){
  caseEl.querySelector('h2').textContent=p.name;
  caseEl.querySelector('.d').textContent=p.desc;
  const deck=caseEl.querySelector('.deck');deck.innerHTML='';
- p.deck.forEach(([f,w,h],i)=>{const im=new Image();im.width=w;im.height=h;im.alt=`${p.name} — ${i+1}`;
+ p.deck.forEach(([f,w,h],i)=>{const im=new Image();im.width=w;im.height=h;im.alt=`${p.name}, ${i+1}`;
   if(i>1)im.loading='lazy';im.decoding='async';im.src=`assets/work/${f}.webp`;deck.appendChild(im)});
  const nx=WORK[(WORK.indexOf(p)+1)%WORK.length],nb=document.getElementById('next');
  nb.querySelector('b').textContent=nx.name+' →';nb.dataset.id=nx.id;
