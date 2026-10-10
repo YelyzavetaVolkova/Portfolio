@@ -32,7 +32,7 @@ main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:var(--gu
 .top .here{color:var(--muted)}
 .head{margin:clamp(48px,10vh,110px) 0 clamp(48px,8vh,90px)}
 h1{font-family:var(--head);font-weight:700;font-size:clamp(44px,7vw,116px);line-height:.94;letter-spacing:-.035em;margin-left:-.05em}
-.head p{margin-top:18px;font-size:clamp(15px,1.2vw,18px);line-height:1.45;max-width:34ch}
+.head p{margin-top:18px;font-size:clamp(15px,1.2vw,18px);line-height:1.45}
 
 .grid{display:flex;gap:clamp(24px,3.2vw,48px);align-items:flex-start;padding:14px 0 30px}
 .poster{flex:1 1 0;min-width:0;cursor:zoom-in}
@@ -40,18 +40,6 @@ h1{font-family:var(--head);font-weight:700;font-size:clamp(44px,7vw,116px);line-
 .frame img{display:block;width:100%;height:auto}
 .gl .frame.ready img{opacity:0}                     /* WebGL draws the poster here; the image stays for layout and as a fallback */
 
-/* silver duct tape across the two top corners: brushed metallic film with a woven scrim, torn ends */
-.tape{position:absolute;top:-9px;width:clamp(42px,4.4vw,62px);height:clamp(15px,1.5vw,20px);z-index:2;pointer-events:none;
- filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.28))}
-.tape::before{content:"";position:absolute;inset:0;
- background:
-  linear-gradient(115deg,transparent 30%,rgba(255,255,255,.38) 46%,transparent 62%),
-  repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 2.5px),
-  repeating-linear-gradient(0deg,rgba(0,0,0,.035) 0 1px,transparent 1px 2.5px),
-  linear-gradient(180deg,#d6d9dc 0%,#c2c5c9 45%,#b5b9bd 62%,#cacdd1 100%);
- clip-path:polygon(4% 0,96% 0,100% 14%,95% 28%,99% 43%,94% 57%,100% 72%,95% 86%,98% 100%,3% 100%,6% 87%,0 73%,5% 58%,1% 44%,6% 29%,0 14%)}
-.tape.l{left:-16px;transform:rotate(-40deg)}
-.tape.r{right:-16px;transform:rotate(38deg)}
 figcaption{margin-top:18px;display:flex;flex-direction:column;gap:3px}
 figcaption b{font-family:var(--head);font-weight:600;font-size:clamp(14px,1.1vw,17px);letter-spacing:-.01em}
 figcaption span{font-size:12px;color:var(--muted)}
@@ -72,14 +60,14 @@ figcaption span{font-size:12px;color:var(--muted)}
  <nav class="top"><a href="./">Yelyzaveta Volkova</a><span class="here">Posters</span></nav>
  <header class="head">
   <h1>Posters</h1>
-  <p>Posters for concerts and events at the Spaska 13 cultural centre.</p>
+  <p>Posters for concerts and events<br>at the Spaska&nbsp;13 cultural centre.</p>
  </header>
  <section class="grid">
-  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/allo.webp" width="1080" height="1350" alt="Poster: Алло? Хочете щось зробити? Приходьте"></div><figcaption><b>Алло?</b><span>Open call</span></figcaption></figure>
-  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/patoka.webp" width="1080" height="1350" alt="Poster: Патока, Жбурни!, Грядки спокою, 27.09"></div><figcaption><b>Патока</b><span>Concert · 27.09</span></figcaption></figure>
-  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/spaska.webp" width="1080" height="1350" alt="Poster: Спаська"></div><figcaption><b>Спаська</b><span>Venue poster</span></figcaption></figure>
-  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/fuji-moodji.webp" width="1080" height="1440" alt="Poster: Fuji Moodji, 11 квітня"></div><figcaption><b>Fuji Moodji</b><span>Concert · 11.04</span></figcaption></figure>
-  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/daryna.webp" width="1080" height="1350" alt="Poster: Daryna, Аліса хоче додому, 30 серпня"></div><figcaption><b>Daryna</b><span>Concert · 30.08</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><img src="assets/posters/allo.webp" width="1080" height="1350" alt="Poster: Алло? Хочете щось зробити? Приходьте"></div><figcaption><b>Алло?</b><span>Open call</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><img src="assets/posters/patoka.webp" width="1080" height="1350" alt="Poster: Патока, Жбурни!, Грядки спокою, 27.09"></div><figcaption><b>Патока</b><span>Concert · 27.09</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><img src="assets/posters/spaska.webp" width="1080" height="1350" alt="Poster: Спаська"></div><figcaption><b>Спаська</b><span>Venue poster</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><img src="assets/posters/fuji-moodji.webp" width="1080" height="1440" alt="Poster: Fuji Moodji, 11 квітня"></div><figcaption><b>Fuji Moodji</b><span>Concert · 11.04</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><img src="assets/posters/daryna.webp" width="1080" height="1350" alt="Poster: Daryna, Аліса хоче додому, 30 серпня"></div><figcaption><b>Daryna</b><span>Concert · 30.08</span></figcaption></figure>
  </section>
 </main>
 <div id="zoom" role="dialog" aria-label="Poster"><img alt=""></div>
@@ -93,7 +81,7 @@ zoom.addEventListener('click',()=>zoom.classList.remove('open'));
 addEventListener('keydown',e=>{if(e.key==='Escape')zoom.classList.remove('open')});
 
 /* ---------- paper on the wall (WebGL2) ----------
-   Each poster is a fine grid. The top edge is taped down; the rest lifts and ripples in a slow draft,
+   Each poster is a fine grid. The top edge is held to the wall; the rest lifts and ripples in a slow draft,
    the bottom corners curl. Normals are taken from the displaced surface, so folds catch the light,
    and a soft shadow is cast on the wall in proportion to how far the paper has lifted. */
 (()=>{
@@ -109,7 +97,7 @@ uniform float uTime,uPhase,uAmp,uRot;
 uniform vec3 uShadow;    // x: shadow pass on/off, y: spread, z: unused
 out vec2 vUV;out vec3 vN;out float vLift;
 float lift(vec2 uv){
- float f=pow(uv.y,1.45);                                           // 0 at the taped top edge, 1 at the bottom
+ float f=pow(uv.y,1.45);                                           // 0 at the fixed top edge, 1 at the bottom
  float t=uTime;
  float w=sin(t*1.05+uv.x*2.3+uPhase)*.55
         +sin(t*1.85-uv.y*3.0+uPhase*1.7+uv.x*1.2)*.3
@@ -177,7 +165,7 @@ gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,n
 const loc=gl.getAttribLocation(pr,'aUV');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(idx),gl.STATIC_DRAW);
 
-const TILT=[-1.4,.9,-.6,1.5,-1.1];   // degrees; the same tilt is applied to the frame (tape, click area) in CSS
+const TILT=[-1.4,.9,-.6,1.5,-1.1];   // degrees; the same tilt is applied to the frame (click area) in CSS
 const posters=[...document.querySelectorAll('.frame')].map((fr,i)=>{
  const img=fr.querySelector('img'),p={fr,tex:null,phase:i*1.9+.7,gust:0,rot:TILT[i%TILT.length]*Math.PI/180};
  fr.style.transform=`rotate(${TILT[i%TILT.length]}deg)`;
