@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Posters · Yelyzaveta Volkova</title>
+<meta name="description" content="Posters by Yelyzaveta Volkova for the Spaska 13 cultural centre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700&family=Stack+Sans+Headline:wght@400..700&display=swap" rel="stylesheet">
+<style>
+:root{
+ --bg:#fff;--ink:#0b0b0b;--muted:#8b8b8b;--hair:#e7e7e7;
+ --head:'Stack Sans Headline','Helvetica Neue',Arial,sans-serif;
+ --body:'LINE Seed JP','Helvetica Neue',Arial,sans-serif;
+ --gut:clamp(20px,3vw,44px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* the WebGL wall sits behind the page; posters are drawn into it at the place of each .frame */
+#wall{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:var(--gut) var(--gut) 120px}
+
+.top{display:flex;justify-content:space-between;align-items:baseline;font-size:15px}
+.top a{text-decoration:none}
+.top a:hover{text-decoration:underline;text-underline-offset:3px}
+.top .here{color:var(--muted)}
+.head{margin:clamp(48px,10vh,110px) 0 clamp(48px,8vh,90px)}
+h1{font-family:var(--head);font-weight:700;font-size:clamp(44px,7vw,116px);line-height:.94;letter-spacing:-.035em;margin-left:-.05em}
+.head p{margin-top:18px;font-size:clamp(15px,1.2vw,18px);line-height:1.45;max-width:34ch}
+
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(56px,7vw,110px) clamp(28px,4.5vw,70px);align-items:start}
+.poster{cursor:zoom-in}
+.frame{position:relative;transform-origin:50% 0}
+.frame img{display:block;width:100%;height:auto}
+.gl .frame.ready img{opacity:0}                     /* WebGL draws the poster here; the image stays for layout and as a fallback */
+.tape{position:absolute;top:-11px;width:clamp(54px,6vw,82px);height:24px;z-index:2;pointer-events:none;
+ background:rgba(244,240,228,.62);box-shadow:0 1px 2px rgba(0,0,0,.08);
+ -webkit-backdrop-filter:blur(.6px);backdrop-filter:blur(.6px);
+ clip-path:polygon(0 8%,4% 0,9% 10%,14% 1%,20% 9%,26% 0,32% 7%,38% 1%,45% 8%,52% 0,58% 9%,65% 2%,72% 9%,79% 0,85% 8%,92% 1%,100% 7%,
+  100% 92%,95% 100%,89% 91%,83% 100%,76% 92%,70% 100%,63% 91%,57% 99%,50% 92%,43% 100%,37% 91%,30% 99%,24% 92%,17% 100%,11% 91%,5% 99%,0 90%)}
+.tape.l{left:-18px;transform:rotate(-38deg)}
+.tape.r{right:-18px;transform:rotate(36deg)}
+figcaption{margin-top:22px;display:flex;justify-content:space-between;gap:14px;align-items:baseline}
+figcaption b{font-family:var(--head);font-weight:600;font-size:clamp(16px,1.25vw,19px);letter-spacing:-.01em}
+figcaption span{font-size:13px;color:var(--muted);text-align:right}
+
+#zoom{position:fixed;inset:0;z-index:10;background:rgba(255,255,255,.96);display:flex;align-items:center;justify-content:center;
+ padding:clamp(16px,4vw,48px);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s;cursor:zoom-out}
+#zoom.open{opacity:1;visibility:visible;transition:opacity .3s}
+#zoom img{max-width:100%;max-height:100%;box-shadow:0 30px 60px rgba(0,0,0,.18)}
+
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<canvas id="wall" aria-hidden="true"></canvas>
+<main>
+ <nav class="top"><a href="./">Yelyzaveta Volkova</a><span class="here">Posters</span></nav>
+ <header class="head">
+  <h1>Posters</h1>
+  <p>Posters for concerts and events at the Spaska 13 cultural centre.</p>
+ </header>
+ <section class="grid">
+  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/allo.webp" width="1080" height="1350" alt="Poster: Алло? Хочете щось зробити? Приходьте"></div><figcaption><b>Алло?</b><span>Open call</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/patoka.webp" width="1080" height="1350" alt="Poster: Патока, Жбурни!, Грядки спокою, 27.09"></div><figcaption><b>Патока</b><span>Concert · 27.09</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/spaska.webp" width="1080" height="1350" alt="Poster: Спаська"></div><figcaption><b>Спаська</b><span>Venue poster</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/fuji-moodji.webp" width="1080" height="1440" alt="Poster: Fuji Moodji, 11 квітня"></div><figcaption><b>Fuji Moodji</b><span>Concert · 11.04</span></figcaption></figure>
+  <figure class="poster"><div class="frame"><span class="tape l"></span><span class="tape r"></span><img src="assets/posters/daryna.webp" width="1080" height="1350" alt="Poster: Daryna, Аліса хоче додому, 30 серпня"></div><figcaption><b>Daryna</b><span>Concert · 30.08</span></figcaption></figure>
+ </section>
+</main>
+<div id="zoom" role="dialog" aria-label="Poster"><img alt=""></div>
+
+<script>
+/* ---------- zoom ---------- */
+const zoom=document.getElementById('zoom'),zimg=zoom.querySelector('img');
+document.querySelectorAll('.poster').forEach(f=>f.addEventListener('click',()=>{
+ const im=f.querySelector('img');zimg.src=im.src;zimg.alt=im.alt;zoom.classList.add('open')}));
+zoom.addEventListener('click',()=>zoom.classList.remove('open'));
+addEventListener('keydown',e=>{if(e.key==='Escape')zoom.classList.remove('open')});
+
+/* ---------- paper on the wall (WebGL2) ----------
+   Each poster is a fine grid. The top edge is taped down; the rest lifts and ripples in a slow draft,
+   the bottom corners curl. Normals are taken from the displaced surface, so folds catch the light,
+   and a soft shadow is cast on the wall in proportion to how far the paper has lifted. */
+(()=>{
+const cv=document.getElementById('wall'),gl=cv.getContext('webgl2',{premultipliedAlpha:true,antialias:true});
+if(!gl)return;                                   // no WebGL: the plain images stay visible
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const VS=`#version 300 es
+in vec2 aUV;
+uniform vec4 uRect;      // poster box in CSS px (x, y, w, h)
+uniform vec2 uView;
+uniform float uTime,uPhase,uAmp,uRot;
+uniform vec3 uShadow;    // x: shadow pass on/off, y: spread, z: unused
+out vec2 vUV;out vec3 vN;out float vLift;
+float lift(vec2 uv){
+ float f=pow(uv.y,1.45);                                           // 0 at the taped top edge, 1 at the bottom
+ float t=uTime;
+ float w=sin(t*1.05+uv.x*2.3+uPhase)*.55
+        +sin(t*1.85-uv.y*3.0+uPhase*1.7+uv.x*1.2)*.3
+        +sin(t*3.2+uv.x*5.0+uv.y*4.0+uPhase*.5)*.15;
+ float side=step(.5,uv.x);
+ float curl=pow(abs(uv.x-.5)*2.,3.)*pow(uv.y,3.)*(.75+.25*sin(t*1.5+uPhase+side*2.1));
+ return (f*(.45+.55*w)*.6+curl)*uAmp;
+}
+vec3 P(vec2 uv){
+ float z=lift(uv);
+ vec2 p=uRect.xy+uv*uRect.zw;
+ p.y-=z*.1;                                                        // lifted paper pulls up a little
+ p.x+=sin(uTime*.9+uPhase)*z*.05;
+ vec2 o=uRect.xy+vec2(uRect.z*.5,0.);float c=cos(uRot),s=sin(uRot);  // hung slightly crooked, pivoting on the top edge
+ p=o+mat2(c,s,-s,c)*(p-o);
+ return vec3(p,z);
+}
+void main(){
+ vUV=aUV;
+ vec3 a=P(aUV),b=P(aUV+vec2(.01,0.)),c=P(aUV+vec2(0.,.01));
+ vN=normalize(cross(b-a,c-a));
+ vLift=a.z;
+ vec3 q=a;
+ if(uShadow.x>.5){ q.xy=a.xy+vec2(a.z*.35+1.5,a.z*.55+3.)*uShadow.y; q.z=0.; }
+ float F=1600.;vec2 c0=uView*.5;
+ vec2 s=c0+(q.xy-c0)*(F/(F-q.z));                                   // a touch of perspective
+ gl_Position=vec4(s.x/uView.x*2.-1.,1.-s.y/uView.y*2.,0.,1.);
+}`;
+const FS=`#version 300 es
+precision highp float;
+in vec2 vUV;in vec3 vN;in float vLift;
+uniform sampler2D uTex;
+uniform vec3 uShadow;
+out vec4 o;
+float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}
+void main(){
+ if(uShadow.x>.5){
+  float e=min(min(vUV.x,1.-vUV.x),min(vUV.y,1.-vUV.y));
+  float a=smoothstep(0.,.035,e)*(.05+vLift*.004)*uShadow.z;
+  o=vec4(0.,0.,0.,a);return;
+ }
+ vec3 L=normalize(vec3(-.35,-.55,.76));
+ vec3 N=normalize(vN);
+ float shade=1.+.55*(dot(N,L)-L.z);                                // flat paper = 1.0, folds lighter or darker
+ vec3 H=normalize(L+vec3(0.,0.,1.));
+ float spec=pow(max(dot(N,H),0.),60.)*.22*smoothstep(.2,4.,vLift); // gloss only where the paper bends up
+ vec3 col=texture(uTex,vUV).rgb*shade+spec;
+ col*=.985+.03*hash(floor(gl_FragCoord.xy));                        // faint paper grain
+ o=vec4(col,1.);
+}`;
+function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
+ if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw gl.getShaderInfoLog(s);return s}
+const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;
+gl.useProgram(pr);
+const U=n=>gl.getUniformLocation(pr,n);
+const uRot=U('uRot'),uRect=U('uRect'),uView=U('uView'),uTime=U('uTime'),uPhase=U('uPhase'),uAmp=U('uAmp'),uShadow=U('uShadow');
+
+// grid mesh shared by all posters
+const NX=36,NY=46,uv=[],idx=[];
+for(let j=0;j<=NY;j++)for(let i=0;i<=NX;i++)uv.push(i/NX,j/NY);
+for(let j=0;j<NY;j++)for(let i=0;i<NX;i++){const a=j*(NX+1)+i,b=a+1,c=a+NX+1,d=c+1;idx.push(a,c,b,b,c,d)}
+const vao=gl.createVertexArray();gl.bindVertexArray(vao);
+gl.bindBuffer(gl.ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(uv),gl.STATIC_DRAW);
+const loc=gl.getAttribLocation(pr,'aUV');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,gl.createBuffer());gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,new Uint16Array(idx),gl.STATIC_DRAW);
+
+const TILT=[-1.4,.9,-.6,1.5,-1.1];   // degrees; the same tilt is applied to the frame (tape, click area) in CSS
+const posters=[...document.querySelectorAll('.frame')].map((fr,i)=>{
+ const img=fr.querySelector('img'),p={fr,tex:null,phase:i*1.9+.7,gust:0,rot:TILT[i%TILT.length]*Math.PI/180};
+ fr.style.transform=`rotate(${TILT[i%TILT.length]}deg)`;
+ const up=()=>{const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);gl.generateMipmap(gl.TEXTURE_2D);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  p.tex=t;fr.classList.add('ready')};
+ img.complete&&img.naturalWidth?up():img.addEventListener('load',up);
+ return p;
+});
+document.documentElement.classList.add('gl');
+function box(p){const r=p.fr.parentNode.getBoundingClientRect();return{left:r.left,top:r.top,width:p.fr.offsetWidth,height:p.fr.offsetHeight,
+ right:r.left+p.fr.offsetWidth,bottom:r.top+p.fr.offsetHeight}}
+
+// a gust follows the cursor: moving across a poster makes it flutter more
+let px=-1e4,py=-1e4,lt=performance.now();
+addEventListener('pointermove',e=>{
+ const now=performance.now(),dt=Math.max(now-lt,8),v=Math.hypot(e.clientX-px,e.clientY-py)/dt;lt=now;px=e.clientX;py=e.clientY;
+ posters.forEach(p=>{const r=box(p);
+  if(px>r.left-60&&px<r.right+60&&py>r.top&&py<r.bottom+60)p.gust=Math.min(1.6,p.gust+Math.min(v,4)*.05)});
+},{passive:true});
+
+gl.enable(gl.BLEND);gl.blendFunc(gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
+let t0=performance.now();
+function frame(now){
+ const dpr=Math.min(devicePixelRatio||1,2),W=innerWidth,H=innerHeight;
+ if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
+ gl.viewport(0,0,cv.width,cv.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+ const t=reduced?2.:(now-t0)/1000;
+ const draft=.55+.45*Math.sin(t*.23)*Math.cos(t*.11+1.);           // the room's slow, uneven draft
+ gl.uniform2f(uView,W,H);gl.uniform1f(uTime,t);
+ const vis=[];
+ posters.forEach(p=>{
+  p.gust*=.975;
+  if(!p.tex)return;const r=box(p);
+  if(r.bottom<-200||r.top>H+200)return;
+  vis.push([p,r,r.width*(.018+.05*draft+.07*p.gust)*(reduced?.4:1)]);
+ });
+ // shadows first (three soft passes), then the paper
+ for(const [p,r,amp] of vis){
+  gl.uniform4f(uRect,r.left,r.top,r.width,r.height);gl.uniform1f(uPhase,p.phase);gl.uniform1f(uAmp,amp);gl.uniform1f(uRot,p.rot);
+  for(const s of [1,1.6,2.3]){gl.uniform3f(uShadow,1,s,1);gl.drawElements(gl.TRIANGLES,idx.length,gl.UNSIGNED_SHORT,0)}
+ }
+ gl.uniform3f(uShadow,0,0,0);
+ for(const [p,r,amp] of vis){
+  gl.uniform4f(uRect,r.left,r.top,r.width,r.height);gl.uniform1f(uPhase,p.phase);gl.uniform1f(uAmp,amp);gl.uniform1f(uRot,p.rot);
+  gl.bindTexture(gl.TEXTURE_2D,p.tex);gl.drawElements(gl.TRIANGLES,idx.length,gl.UNSIGNED_SHORT,0);
+ }
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
