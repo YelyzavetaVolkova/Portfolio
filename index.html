@@ -31,7 +31,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 .intro,.work{pointer-events:auto}
 /* the widest line, "Yelyzaveta" (~4.8em), must fit, so the size is also capped by the available width */
 h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),calc((100vw - 2*var(--gut) - var(--indent))/5.1));
- line-height:.94;letter-spacing:-.035em;margin-left:-.05em;align-self:flex-start}
+ line-height:1;letter-spacing:-.035em;margin-left:-.05em;align-self:flex-start}   /* 1.0: the descenders of "Yelyzaveta" clear the ascenders of "Volkova" */
 .cols{display:grid;grid-template-columns:minmax(0,36ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
  margin-top:clamp(24px,4.4vh,48px);align-items:start;justify-content:start}
 /* "stop for, for projects that make a difference." stays one line; on the narrowest phones only "stop" may wrap */
