@@ -32,8 +32,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 /* the name (~8.3em) stays on one line, so the size is capped by the available width */
 h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),calc((100vw - 2*var(--gut) - var(--indent))/8.6));
  line-height:.94;letter-spacing:-.035em;margin-left:-.05em;align-self:flex-start}
-.cols{display:grid;grid-template-columns:minmax(0,30ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
+.cols{display:grid;grid-template-columns:minmax(0,32ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
  margin-top:clamp(24px,4.4vh,48px);align-items:start;justify-content:start}
+.intro .keep{white-space:nowrap}
 .intro{text-wrap:pretty;font-size:clamp(15px,1.2vw,18px);line-height:1.45}
 
 /* ---------- project index ---------- */
@@ -121,7 +122,7 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
  <div id="pile" aria-hidden="true"></div>
  <h1>Hi! I’m<br>Yelyzaveta&nbsp;Volkova</h1>
  <div class="cols">
-  <p class="intro">A graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I&nbsp;enjoy designing things people stop for, for projects that make&nbsp;a&nbsp;difference.</p>
+  <p class="intro">A graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I&nbsp;enjoy designing things people stop <span class="keep">for, for projects that make a difference.</span></p>
   <nav class="work" aria-label="Selected work">
    <span class="lbl">Selected work</span>
    <ol>
@@ -173,7 +174,7 @@ const WORK=[
 const byId=Object.fromEntries(WORK.map(p=>[p.id,p]));
 // what falls: one of each, each tied to its project. MORE are extra objects from the project mockups.
 const MORE=[
- {id:'alta',f:'alta-bag-red',ar:.619,size:.19,shape:[['p',[[.012,.951],[.012,.286],[.062,.028],[.116,.02],[.851,.008],[.917,.018],[.983,.253],[.983,.962],[.893,.99],[.219,.967]]]]},
+ {id:'alta',f:'alta-bag-red',ar:0.63,size:.19,shape:[['p',[[0.003,0.288],[0.049,0.03],[0.075,0.015],[0.868,0.0],[0.906,0.015],[0.976,0.267],[0.997,0.962],[0.876,0.997],[0.38,0.981],[0.003,0.961]]]]},
  {id:'oxis',f:'oxis-sleeve-blue',ar:1.036,size:.17,shape:[['r',0,0,1,1]]},
  {id:'oxis',f:'oxis-badge',ar:372/632,size:.3,shape:[['r',0.027,0.324,0.599,0.88],['p',[[0.599,0.068],[0.742,0.068],[0.371,0.313],[0.304,0.315],[0.282,0.301],[0.285,0.278],[0.433,0.161],[0.513,0.109]]],['p',[[0.688,0.913],[0.602,0.066],[0.726,0.013],[0.852,0.081],[0.879,0.191],[0.96,0.886],[0.89,0.965],[0.774,0.97]]]]},
 ];
