@@ -8,6 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=LINE+Seed+JP:wght@400;700&family=Stack+Sans+Headline:wght@400..700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/objects/kino.webp">
+<link rel="preload" as="image" href="assets/objects/chimera.webp">
+<link rel="preload" as="image" href="assets/objects/kanva.webp">
+<link rel="preload" as="image" href="assets/objects/alta.webp">
+<link rel="preload" as="image" href="assets/objects/oxis.webp">
+<link rel="preload" as="image" href="assets/objects/alta-bag-red.webp">
+<link rel="preload" as="image" href="assets/objects/oxis-sleeve-blue.webp">
+<link rel="preload" as="image" href="assets/objects/oxis-badge.webp">
 <style>
 :root{
  --bg:#fff;--ink:#0b0b0b;--muted:#8b8b8b;--hair:#e7e7e7;
@@ -187,7 +195,7 @@ const KINDS=[...WORK.map(p=>({p,src:`assets/objects/${p.id}.webp`,ar:p.ar,size:p
 const BIG=1.7;   // objects are drawn large and may hang over the edges of the screen
 
 /* ---------- falling objects ---------- */
-const RAIN_DELAY=800;     // ms of visible time before things start to fall (counted once fonts and images are ready)
+const RAIN_DELAY=0;       // ms of visible time before things start to fall (counted once the images are ready)
 const {Engine,Bodies,Body,Composite,Constraint,Query,Sleeping,Vertices}=Matter;
 const pile=document.getElementById('pile'),hero=document.getElementById('hero'),play=document.getElementById('play');
 const tip=document.getElementById('tip'),clearBtn=document.getElementById('clear'),ctl=document.querySelector('.ctl');
@@ -271,7 +279,7 @@ function rain(){
   if(i>=order.length){clearInterval(spawnTimer);return}
   const [k,sc,slot]=order[i++],h=k.size*unit()*sc;
   makeItem(k,slot*W+(Math.random()-.5)*W*.06,-h*.6-Math.random()*80,sc);
- },narrow.matches?170:130);
+ },narrow.matches?120:90);
 }
 function clearTable(){
  clearInterval(spawnTimer);state='clearing';buildWalls();
@@ -297,9 +305,11 @@ requestAnimationFrame(frame);
 function setPaused(v){paused=v;last=performance.now()}
 
 /* start after RAIN_DELAY of visible time (on phones: once the box below is scrolled into view);
-   fonts and images load first so the text shapes are final and nothing falls in empty */
+   images load first so nothing falls in empty */
 mount();
-const ready=Promise.all([document.fonts.ready,...KINDS.map(k=>{const im=new Image();im.src=k.src;return im.decode().catch(()=>{})})]);
+// only the images are awaited; when the web fonts arrive the text obstacles are re-measured
+const ready=Promise.all(KINDS.map(k=>{const im=new Image();im.src=k.src;return im.decode().catch(()=>{})}));
+document.fonts.ready.then(()=>{if(state==='raining'){mount();buildWalls();items.forEach(it=>Sleeping.set(it.body,false))}});
 if(reduced){document.body.classList.add('ready');clearBtn.textContent='Drop the objects'}
 else if(narrow.matches){
  const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();ready.then(rain)}},{threshold:.35});
