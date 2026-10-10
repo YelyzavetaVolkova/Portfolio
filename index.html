@@ -29,8 +29,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-a
 /* the text grid spans the full width; let clicks through its empty parts to the objects behind */
 .cols,.hero>h1{pointer-events:none}
 .intro,.work{pointer-events:auto}
-/* the name (~8.3em) stays on one line, so the size is capped by the available width */
-h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),calc((100vw - 2*var(--gut) - var(--indent))/8.6));
+/* the widest line, "Yelyzaveta" (~4.8em), must fit, so the size is also capped by the available width */
+h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),calc((100vw - 2*var(--gut) - var(--indent))/5.1));
  line-height:.94;letter-spacing:-.035em;margin-left:-.05em;align-self:flex-start}
 .cols{display:grid;grid-template-columns:minmax(0,36ch) minmax(0,460px);gap:clamp(28px,6vw,110px);
  margin-top:clamp(24px,4.4vh,48px);align-items:start;justify-content:start}
@@ -40,6 +40,7 @@ h1{font-family:var(--head);font-weight:700;font-size:min(clamp(40px,7vw,116px),c
 .intro{text-wrap:pretty;text-wrap:balance;font-size:clamp(15px,1.2vw,18px);line-height:1.45}
 
 /* ---------- project index ---------- */
+.work{margin-left:clamp(0px,3.5vw,64px)}
 .work .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
 .work ol{list-style:none}
 .row{display:grid;grid-template-columns:2.6em 1fr auto;gap:0 14px;align-items:baseline;width:100%;
@@ -98,6 +99,7 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
 @media (max-width:900px){
  :root{--indent:0px}
  .cols{grid-template-columns:1fr;gap:44px}
+ .work{margin-left:0}
  .intro{max-width:34ch}
  .row .ds{font-size:12px}
 }
@@ -122,9 +124,9 @@ body.ready .ctl{opacity:1;transform:none;pointer-events:auto}
 
 <main class="hero" id="hero">
  <div id="pile" aria-hidden="true"></div>
- <h1>Hi! I’m<br>Yelyzaveta&nbsp;Volkova</h1>
+ <h1>Hi! I’m<br>Yelyzaveta<br>Volkova</h1>
  <div class="cols">
-  <p class="intro">A graphic designer working between culture and marketing. I’ve made identities and visuals for film festivals, exhibitions and music labels, and ad creatives that have to perform. I&nbsp;enjoy designing things people <span class="keep-wide">stop <span class="keep">for, for projects that make a difference.</span></span></p>
+  <p class="intro">A graphic designer working between culture and&nbsp;marketing. I’ve made identities and&nbsp;visuals for film festivals, exhibitions and&nbsp;music labels, and&nbsp;ad creatives that have to perform. I&nbsp;enjoy designing things people <span class="keep-wide">stop <span class="keep">for, for projects that make a difference.</span></span></p>
   <nav class="work" aria-label="Selected work">
    <span class="lbl">Selected work</span>
    <ol>
