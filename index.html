@@ -13,7 +13,7 @@
 <link rel="preload" as="image" href="assets/objects/kanva.webp">
 <link rel="preload" as="image" href="assets/objects/alta.webp">
 <link rel="preload" as="image" href="assets/objects/oxis.webp">
-<link rel="preload" as="image" href="assets/objects/bruk.webp">
+<link rel="preload" as="image" href="assets/objects/bruk-walks.webp">
 <link rel="preload" as="image" href="assets/objects/alta-bag-red.webp">
 <link rel="preload" as="image" href="assets/objects/oxis-sleeve-blue.webp">
 <link rel="preload" as="image" href="assets/objects/oxis-badge.webp">
@@ -184,7 +184,7 @@ const WORK=[
  {id:'oxis',no:'05',name:'Oxis',desc:'Brand identity reimagining',ar:640/610,size:.165,fill:.95,
   deck:[['oxis-01',1250,7655]],
   shape:[['r',.02,0,.99,1]]},
- {id:'bruk',no:'06',name:'BRUK',desc:'UI/UX design',ar:560/1161,size:.2,fill:.95,
+ {id:'bruk',obj:'bruk-walks',no:'06',name:'BRUK',desc:'UI/UX design',ar:509/1081,size:.2,fill:.95,
   deck:[['bruk-01',1250,911],['bruk-02',1250,582],['bruk-03',1250,811],['bruk-04',1250,1027],['bruk-05',1250,1471],
    ['bruk-06',1250,2662],['bruk-07',1250,1400],['bruk-08',1250,1355],['bruk-09',1250,1751],['bruk-10',1250,1323],
    ['bruk-11',1250,1087],['bruk-12',1250,1355],['bruk-13',1250,797],['bruk-14',1250,1319],['bruk-15',1250,752],['bruk-16',1250,309]],
@@ -197,7 +197,7 @@ const MORE=[
  {id:'oxis',f:'oxis-sleeve-blue',ar:1.036,size:.17,shape:[['r',0,0,1,1]]},
  {id:'oxis',f:'oxis-badge',ar:372/632,size:.3,shape:[['r',0.027,0.324,0.599,0.88],['p',[[0.599,0.068],[0.742,0.068],[0.371,0.313],[0.304,0.315],[0.282,0.301],[0.285,0.278],[0.433,0.161],[0.513,0.109]]],['p',[[0.688,0.913],[0.602,0.066],[0.726,0.013],[0.852,0.081],[0.879,0.191],[0.96,0.886],[0.89,0.965],[0.774,0.97]]]]},
 ];
-const KINDS=[...WORK.map(p=>({p,src:`assets/objects/${p.id}.webp`,ar:p.ar,size:p.size,shape:p.shape})),
+const KINDS=[...WORK.map(p=>({p,src:`assets/objects/${p.obj||p.id}.webp`,ar:p.ar,size:p.size,shape:p.shape})),
  ...MORE.map(e=>({p:byId[e.id],src:`assets/objects/${e.f}.webp`,ar:e.ar,size:e.size,shape:e.shape}))];
 const BIG=1.7;   // objects are drawn large and may hang over the edges of the screen
 
